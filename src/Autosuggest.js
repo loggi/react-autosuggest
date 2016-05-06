@@ -221,29 +221,35 @@ class Autosuggest extends Component {
                 revealSuggestions();
               }
             } else if (suggestions.length > 0) {
-              const { newFocusedSectionIndex, newFocusedItemIndex } = data;
+              let { newFocusedSectionIndex, newFocusedItemIndex } = data;
+              if(event.key === 'ArrowUp' && newFocusedItemIndex === null) {
+                newFocusedItemIndex = suggestions.length - 1;
+              } if(event.key === 'ArrowDown' && newFocusedItemIndex === suggestions.length) {
+                newFocusedItemIndex = 0;
+              }
               const newValue = newFocusedItemIndex === null ?
                 valueBeforeUpDown :
                 this.getSuggestionValueByIndex(newFocusedSectionIndex, newFocusedItemIndex);
 
               updateFocusedSuggestion(newFocusedSectionIndex, newFocusedItemIndex, value);
-              this.maybeCallOnChange(event, newValue, event.key === 'ArrowDown' ? 'down' : 'up');
             }
             event.preventDefault();
             break;
 
           case 'Enter': {
             const focusedSuggestion = this.getFocusedSuggestion();
+            const suggestionValue = this.props.getSuggestionValue(focusedSuggestion);
 
             if (focusedSuggestion !== null) {
               closeSuggestions('enter');
               onSuggestionSelected(event, {
                 suggestion: focusedSuggestion,
-                suggestionValue: value,
+                suggestionValue: suggestionValue,
                 sectionIndex: focusedSectionIndex,
                 method: 'enter'
               });
               this.maybeCallOnSuggestionsUpdateRequested({ value, reason: 'enter' });
+              this.maybeCallOnChange(event, suggestionValue, 'enter');
             }
             break;
           }

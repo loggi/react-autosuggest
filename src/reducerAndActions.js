@@ -62,7 +62,7 @@ export default function reducer(state, action) {
         ...state,
         isFocused: false,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: null,
+        focusedSuggestionIndex: 0,
         valueBeforeUpDown: null,
         isCollapsed: true
       };
@@ -71,14 +71,14 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: null,
+        focusedSuggestionIndex: 0,
         valueBeforeUpDown: null,
         isCollapsed: !action.shouldRenderSuggestions,
         lastAction: action.lastAction
       };
 
     case UPDATE_FOCUSED_SUGGESTION: {
-      const { value, sectionIndex, suggestionIndex } = action;
+      const { value, sectionIndex, suggestionIndex, lastAction } = action;
       const valueBeforeUpDown =
         state.valueBeforeUpDown === null && typeof value !== 'undefined'
           ? value
@@ -87,7 +87,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: sectionIndex,
-        focusedSuggestionIndex: suggestionIndex,
+        focusedSuggestionIndex: (suggestionIndex) ? suggestionIndex : 0,
         valueBeforeUpDown
       };
     }
@@ -102,7 +102,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: null,
+        focusedSuggestionIndex: 0,
         valueBeforeUpDown: null,
         isCollapsed: true,
         lastAction: action.lastAction

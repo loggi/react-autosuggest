@@ -6,7 +6,7 @@ var HappyPack = require('happypack');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:5000',
     './demo/src/index'
   ],
 
