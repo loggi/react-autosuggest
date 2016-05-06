@@ -1,6 +1,7 @@
 import styles from './Examples.less';
 
 import React from 'react';
+import SelectFirst from 'SelectFirst/SelectFirst';
 import Basic from 'Basic/Basic';
 import MultipleSections from 'MultipleSections/MultipleSections';
 import CustomRender from 'CustomRender/CustomRender';
@@ -11,6 +12,7 @@ export default function Examples() {
       <h2 className={styles.header}>
         Examples
       </h2>
+      <SelectFirst />
       <Basic />
       <MultipleSections />
       <CustomRender />

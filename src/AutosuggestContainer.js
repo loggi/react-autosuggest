@@ -86,7 +86,8 @@ export default class AutosuggestContainer extends Component {
     },
     focusInputOnSuggestionClick: true,
     theme: defaultTheme,
-    id: '1'
+    id: '1',
+    selectFirst: false
   };
 
   constructor() {
@@ -98,7 +99,8 @@ export default class AutosuggestContainer extends Component {
       focusedSectionIndex: null,
       focusedSuggestionIndex: 0,
       valueBeforeUpDown: null,
-      lastAction: null
+      lastAction: null,
+      selectFirst: false
     };
 
     this.store = createStore(reducer, initialState);
@@ -115,7 +117,8 @@ export default class AutosuggestContainer extends Component {
       multiSection, shouldRenderSuggestions, suggestions,
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
-      onSuggestionSelected, focusInputOnSuggestionClick, theme, id
+      onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
+      selectFirst
     } = this.props;
 
     return (
@@ -130,6 +133,7 @@ export default class AutosuggestContainer extends Component {
                    inputProps={inputProps}
                    onSuggestionSelected={onSuggestionSelected}
                    focusInputOnSuggestionClick={focusInputOnSuggestionClick}
+                   selectFirst={selectFirst}
                    theme={mapToAutowhateverTheme(theme)}
                    id={id}
                    inputRef={this.saveInput}

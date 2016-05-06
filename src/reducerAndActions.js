@@ -4,6 +4,13 @@ const INPUT_CHANGED = 'INPUT_CHANGED';
 const UPDATE_FOCUSED_SUGGESTION = 'UPDATE_FOCUSED_SUGGESTION';
 const REVEAL_SUGGESTIONS = 'REVEAL_SUGGESTIONS';
 const CLOSE_SUGGESTIONS = 'CLOSE_SUGGESTIONS';
+const UPDATE_SELECT_FIRST = 'UPDATE_SELECT_FIRST';
+
+export function updateSelectFirst() {
+  return {
+    type: UPDATE_SELECT_FIRST
+  }
+}
 
 export function inputFocused(shouldRenderSuggestions) {
   return {
@@ -50,6 +57,11 @@ export function closeSuggestions(lastAction) {
 
 export default function reducer(state, action) {
   switch (action.type) {
+    case UPDATE_SELECT_FIRST:
+      return {
+        ...state,
+        selectFirst: true
+      }
     case INPUT_FOCUSED:
       return {
         ...state,
@@ -62,7 +74,7 @@ export default function reducer(state, action) {
         ...state,
         isFocused: false,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: 0,
+        focusedSuggestionIndex: state.selectFirst ? 0 : null,
         valueBeforeUpDown: null,
         isCollapsed: true
       };
@@ -71,14 +83,14 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: 0,
+        focusedSuggestionIndex: state.selectFirst ? 0 : null,
         valueBeforeUpDown: null,
         isCollapsed: !action.shouldRenderSuggestions,
         lastAction: action.lastAction
       };
 
     case UPDATE_FOCUSED_SUGGESTION: {
-      const { value, sectionIndex, suggestionIndex, lastAction } = action;
+      const { value, sectionIndex, suggestionIndex } = action;
       const valueBeforeUpDown =
         state.valueBeforeUpDown === null && typeof value !== 'undefined'
           ? value
@@ -87,7 +99,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: sectionIndex,
-        focusedSuggestionIndex: (suggestionIndex) ? suggestionIndex : 0,
+        focusedSuggestionIndex: (!state.selectFirst) ? suggestionIndex : (suggestionIndex) ? suggestionIndex : 0,
         valueBeforeUpDown
       };
     }
@@ -102,7 +114,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         focusedSectionIndex: null,
-        focusedSuggestionIndex: 0,
+        focusedSuggestionIndex: state.selectFirst ? 0 : null,
         valueBeforeUpDown: null,
         isCollapsed: true,
         lastAction: action.lastAction
