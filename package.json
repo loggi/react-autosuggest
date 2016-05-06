@@ -23,7 +23,7 @@
     "prepublish": "npm run dist && npm run standalone"
   },
   "dependencies": {
-    "@loggi/react-autowhatever": "^3.2.2",
+    "@loggi/react-autowhatever": "^3.2.3",
     "react-redux": "^4.4.5",
     "redux": "^3.5.1"
   },
