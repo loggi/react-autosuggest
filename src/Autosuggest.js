@@ -253,7 +253,6 @@ class Autosuggest extends Component {
             event.preventDefault();
             break;
 
-          case 'Tab':
           case 'Enter': {
             const focusedSuggestion = this.getFocusedSuggestion();
 
