@@ -87,7 +87,8 @@ export default class AutosuggestContainer extends Component {
     focusInputOnSuggestionClick: true,
     theme: defaultTheme,
     id: '1',
-    selectFirst: false
+    selectFirst: false,
+    auxiliarComponent: null
   };
 
   constructor() {
@@ -118,7 +119,7 @@ export default class AutosuggestContainer extends Component {
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
       onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
-      selectFirst
+      selectFirst, auxiliarComponent
     } = this.props;
 
     return (
@@ -134,6 +135,7 @@ export default class AutosuggestContainer extends Component {
                    onSuggestionSelected={onSuggestionSelected}
                    focusInputOnSuggestionClick={focusInputOnSuggestionClick}
                    selectFirst={selectFirst}
+                   auxiliarComponent={auxiliarComponent}
                    theme={mapToAutowhateverTheme(theme)}
                    id={id}
                    inputRef={this.saveInput}

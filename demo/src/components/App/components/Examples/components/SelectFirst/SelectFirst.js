@@ -82,6 +82,7 @@ export default class SelectFirst extends Component {
                        inputProps={inputProps}
                        focusInputOnSuggestionClick={focusInputOnSuggestionClick}
                        selectFirst
+                       auxiliarComponent={<div>Auxiliar Component</div>}
                        id="selectfirst-example" />
         </div>
       </div>

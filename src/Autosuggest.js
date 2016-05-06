@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { inputFocused, inputBlurred, inputChanged, updateFocusedSuggestion,
          revealSuggestions, closeSuggestions, updateSelectFirst } from './reducerAndActions';
-import Autowhatever from 'react-autowhatever';
+import Autowhatever from '@loggi/react-autowhatever';
 
 function mapStateToProps(state) {
   return {
@@ -186,7 +186,7 @@ class Autosuggest extends Component {
   render() {
     const {
       suggestions, renderSuggestion, inputProps, shouldRenderSuggestions,
-      onSuggestionSelected, multiSection, renderSectionTitle, id,
+      onSuggestionSelected, multiSection, renderSectionTitle, id, auxiliarComponent,
       getSectionSuggestions, focusInputOnSuggestionClick, theme, isFocused,
       isCollapsed, focusedSectionIndex, focusedSuggestionIndex,
       valueBeforeUpDown, inputFocused, inputBlurred, inputChanged,
@@ -253,11 +253,12 @@ class Autosuggest extends Component {
             event.preventDefault();
             break;
 
+          case 'Tab':
           case 'Enter': {
             const focusedSuggestion = this.getFocusedSuggestion();
-            const suggestionValue = this.props.getSuggestionValue(focusedSuggestion);
 
-            if (focusedSuggestion !== null) {
+            if (focusedSuggestion) {
+              const suggestionValue = this.props.getSuggestionValue(focusedSuggestion);
               closeSuggestions('enter');
               onSuggestionSelected(event, {
                 suggestion: focusedSuggestion,
@@ -349,18 +350,21 @@ class Autosuggest extends Component {
     const renderItem = item => renderSuggestion(item, { value, valueBeforeUpDown });
 
     return (
-      <Autowhatever multiSection={multiSection}
-                    items={items}
-                    renderItem={renderItem}
-                    renderSectionTitle={renderSectionTitle}
-                    getSectionItems={getSectionSuggestions}
-                    focusedSectionIndex={focusedSectionIndex}
-                    focusedItemIndex={focusedSuggestionIndex}
-                    inputProps={autowhateverInputProps}
-                    itemProps={itemProps}
-                    theme={theme}
-                    id={id}
-                    ref={this.saveInput} />
+      <span>
+        <Autowhatever multiSection={multiSection}
+                      items={items}
+                      renderItem={renderItem}
+                      renderSectionTitle={renderSectionTitle}
+                      getSectionItems={getSectionSuggestions}
+                      focusedSectionIndex={focusedSectionIndex}
+                      focusedItemIndex={focusedSuggestionIndex}
+                      inputProps={autowhateverInputProps}
+                      itemProps={itemProps}
+                      theme={theme}
+                      id={id}
+                      auxiliarComponent={auxiliarComponent}
+                      ref={this.saveInput} />
+      </span>
     );
   }
 }
