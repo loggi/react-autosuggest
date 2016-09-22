@@ -119,7 +119,7 @@ export default class AutosuggestContainer extends Component {
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
       onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
-      selectFirst, auxiliarComponent
+      selectFirst, auxiliarComponent, auxiliarComponentPosition
     } = this.props;
 
     return (
@@ -136,6 +136,7 @@ export default class AutosuggestContainer extends Component {
                    focusInputOnSuggestionClick={focusInputOnSuggestionClick}
                    selectFirst={selectFirst}
                    auxiliarComponent={auxiliarComponent}
+                   auxiliarComponentPosition={auxiliarComponentPosition}
                    theme={mapToAutowhateverTheme(theme)}
                    id={id}
                    inputRef={this.saveInput}
