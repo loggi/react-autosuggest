@@ -119,11 +119,13 @@ export default class AutosuggestContainer extends Component {
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
       onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
-      selectFirst, auxiliarComponent, auxiliarComponentPosition
+      selectFirst, auxiliarComponent, auxiliarComponentPosition, customInput
     } = this.props;
 
     return (
-      <Autosuggest multiSection={multiSection}
+      <Autosuggest
+                   customInput={customInput}
+                   multiSection={multiSection}
                    shouldRenderSuggestions={shouldRenderSuggestions}
                    suggestions={suggestions}
                    onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}

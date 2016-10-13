@@ -1,6 +1,6 @@
 {
   "name": "@loggi/react-autosuggest",
-  "version": "3.7.8",
+  "version": "3.7.9",
   "description": "WAI-ARIA compliant React autosuggest component",
   "main": "dist/index.js",
   "repository": {
@@ -23,7 +23,7 @@
     "prepublish": "npm run dist && npm run standalone"
   },
   "dependencies": {
-    "@loggi/react-autowhatever": "^3.2.4",
+    "@loggi/react-autowhatever": "^3.2.5",
     "react-redux": "^4.4.5",
     "redux": "^3.5.1"
   },
