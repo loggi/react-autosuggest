@@ -254,10 +254,17 @@ class Autosuggest extends Component {
             event.preventDefault();
             break;
 
+          case 'Tab':
           case 'Enter': {
             const focusedSuggestion = this.getFocusedSuggestion();
 
             if (focusedSuggestion) {
+              if (event.key === 'Tab') {
+                if (this.props.isCollapsed) {
+                   return;
+                }
+                event.preventDefault();
+              }
               const suggestionValue = this.props.getSuggestionValue(focusedSuggestion);
               closeSuggestions('enter');
               onSuggestionSelected(event, {
