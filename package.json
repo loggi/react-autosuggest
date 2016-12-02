@@ -1,6 +1,6 @@
 {
   "name": "@loggi/react-autosuggest",
-  "version": "3.7.9-beta",
+  "version": "3.8.0",
   "description": "WAI-ARIA compliant React autosuggest component",
   "main": "dist/index.js",
   "repository": {
