@@ -333,7 +333,11 @@ class Autosuggest extends Component {
       closeSuggestions('click');
 
       if (focusInputOnSuggestionClick === true) {
-        this.input.focus();
+        const input = this.input || {};
+
+        if (typeof input.focus === 'function') {
+          input.focus();
+        }
       } else {
         inputBlurred();
         onBlur && onBlur(this.onBlurEvent);
