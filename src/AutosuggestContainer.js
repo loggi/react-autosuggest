@@ -70,7 +70,8 @@ export default class AutosuggestContainer extends Component {
     getSectionSuggestions: PropTypes.func,
     focusInputOnSuggestionClick: PropTypes.bool,
     theme: PropTypes.object,
-    id: PropTypes.string
+    id: PropTypes.string,
+    customRenderInput: PropTypes.func
   };
 
   static defaultProps = {
@@ -119,30 +120,33 @@ export default class AutosuggestContainer extends Component {
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
       onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
-      selectFirst, auxiliarComponent, auxiliarComponentPosition, customInput
+      selectFirst, auxiliarComponent, auxiliarComponentPosition, customInput,
+      customRenderInput
     } = this.props;
 
     return (
       <Autosuggest
-                   customInput={customInput}
-                   multiSection={multiSection}
-                   shouldRenderSuggestions={shouldRenderSuggestions}
-                   suggestions={suggestions}
-                   onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
-                   getSuggestionValue={getSuggestionValue}
-                   renderSuggestion={renderSuggestion}
-                   renderSectionTitle={renderSectionTitle}
-                   getSectionSuggestions={getSectionSuggestions}
-                   inputProps={inputProps}
-                   onSuggestionSelected={onSuggestionSelected}
-                   focusInputOnSuggestionClick={focusInputOnSuggestionClick}
-                   selectFirst={selectFirst}
-                   auxiliarComponent={auxiliarComponent}
-                   auxiliarComponentPosition={auxiliarComponentPosition}
-                   theme={mapToAutowhateverTheme(theme)}
-                   id={id}
-                   inputRef={this.saveInput}
-                   store={this.store} />
+        customInput={customInput}
+        multiSection={multiSection}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        suggestions={suggestions}
+        onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        renderSectionTitle={renderSectionTitle}
+        getSectionSuggestions={getSectionSuggestions}
+        inputProps={inputProps}
+        onSuggestionSelected={onSuggestionSelected}
+        focusInputOnSuggestionClick={focusInputOnSuggestionClick}
+        selectFirst={selectFirst}
+        auxiliarComponent={auxiliarComponent}
+        auxiliarComponentPosition={auxiliarComponentPosition}
+        theme={mapToAutowhateverTheme(theme)}
+        id={id}
+        inputRef={this.saveInput}
+        store={this.store}
+        customRenderInput={customRenderInput}
+      />
     );
   }
 }
