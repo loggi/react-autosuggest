@@ -52,6 +52,16 @@ export default class AutosuggestContainer extends Component {
     onSuggestionsUpdateRequested: PropTypes.func,
     getSuggestionValue: PropTypes.func.isRequired,
     renderSuggestion: PropTypes.func.isRequired,
+    shouldRenderSuggestions: PropTypes.func,
+    onSuggestionSelected: PropTypes.func,
+    multiSection: PropTypes.bool,
+    renderSectionTitle: PropTypes.func,
+    getSectionSuggestions: PropTypes.func,
+    focusInputOnSuggestionClick: PropTypes.bool,
+    theme: PropTypes.object,
+    id: PropTypes.string,
+    customRenderInput: PropTypes.func,
+    customRenderList: PropTypes.func,
     inputProps: (props, propName) => {
       const inputProps = props[propName];
 
@@ -62,15 +72,7 @@ export default class AutosuggestContainer extends Component {
       if (!inputProps.hasOwnProperty('onChange')) {
         throw new Error('\'inputProps\' must have \'onChange\'.');
       }
-    },
-    shouldRenderSuggestions: PropTypes.func,
-    onSuggestionSelected: PropTypes.func,
-    multiSection: PropTypes.bool,
-    renderSectionTitle: PropTypes.func,
-    getSectionSuggestions: PropTypes.func,
-    focusInputOnSuggestionClick: PropTypes.bool,
-    theme: PropTypes.object,
-    id: PropTypes.string
+    }
   };
 
   static defaultProps = {
@@ -78,17 +80,17 @@ export default class AutosuggestContainer extends Component {
     shouldRenderSuggestions: value => value.trim().length > 0,
     onSuggestionSelected: noop,
     multiSection: false,
+    focusInputOnSuggestionClick: true,
+    theme: defaultTheme,
+    id: '1',
+    selectFirst: false,
+    auxiliarComponent: null,
     renderSectionTitle() {
       throw new Error('`renderSectionTitle` must be provided');
     },
     getSectionSuggestions() {
       throw new Error('`getSectionSuggestions` must be provided');
-    },
-    focusInputOnSuggestionClick: true,
-    theme: defaultTheme,
-    id: '1',
-    selectFirst: false,
-    auxiliarComponent: null
+    }
   };
 
   constructor() {
@@ -119,30 +121,34 @@ export default class AutosuggestContainer extends Component {
       onSuggestionsUpdateRequested, getSuggestionValue, renderSuggestion,
       renderSectionTitle, getSectionSuggestions, inputProps,
       onSuggestionSelected, focusInputOnSuggestionClick, theme, id,
-      selectFirst, auxiliarComponent, auxiliarComponentPosition, customInput
+      selectFirst, auxiliarComponent, auxiliarComponentPosition, customInput,
+      customRenderInput, customRenderList
     } = this.props;
 
     return (
       <Autosuggest
-                   customInput={customInput}
-                   multiSection={multiSection}
-                   shouldRenderSuggestions={shouldRenderSuggestions}
-                   suggestions={suggestions}
-                   onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
-                   getSuggestionValue={getSuggestionValue}
-                   renderSuggestion={renderSuggestion}
-                   renderSectionTitle={renderSectionTitle}
-                   getSectionSuggestions={getSectionSuggestions}
-                   inputProps={inputProps}
-                   onSuggestionSelected={onSuggestionSelected}
-                   focusInputOnSuggestionClick={focusInputOnSuggestionClick}
-                   selectFirst={selectFirst}
-                   auxiliarComponent={auxiliarComponent}
-                   auxiliarComponentPosition={auxiliarComponentPosition}
-                   theme={mapToAutowhateverTheme(theme)}
-                   id={id}
-                   inputRef={this.saveInput}
-                   store={this.store} />
+        customInput={customInput}
+        multiSection={multiSection}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        suggestions={suggestions}
+        onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        renderSectionTitle={renderSectionTitle}
+        getSectionSuggestions={getSectionSuggestions}
+        inputProps={inputProps}
+        onSuggestionSelected={onSuggestionSelected}
+        focusInputOnSuggestionClick={focusInputOnSuggestionClick}
+        selectFirst={selectFirst}
+        auxiliarComponent={auxiliarComponent}
+        auxiliarComponentPosition={auxiliarComponentPosition}
+        theme={mapToAutowhateverTheme(theme)}
+        id={id}
+        inputRef={this.saveInput}
+        store={this.store}
+        customRenderInput={customRenderInput}
+        customRenderList={customRenderList}
+      />
     );
   }
 }
