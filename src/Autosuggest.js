@@ -38,9 +38,10 @@ class Autosuggest extends Component {
     updateFocusedSuggestion: PropTypes.func.isRequired,
     revealSuggestions: PropTypes.func.isRequired,
     closeSuggestions: PropTypes.func.isRequired,
-    customRenderInput: PropTypes.func,
     selectFirst: PropTypes.bool,
-    updateSelectFirst: PropTypes.func
+    updateSelectFirst: PropTypes.func,
+    customRenderInput: PropTypes.func,
+    customRenderList: PropTypes.func
   };
 
   constructor() {
@@ -173,7 +174,7 @@ class Autosuggest extends Component {
       isCollapsed, focusedSectionIndex, focusedSuggestionIndex,
       valueBeforeUpDown, inputFocused, inputBlurred, inputChanged,
       updateFocusedSuggestion, revealSuggestions, closeSuggestions, selectFirst,
-      auxiliarComponentPosition, input, customRenderInput
+      auxiliarComponentPosition, input, customRenderInput, customRenderList
     } = this.props;
 
     const { value, onBlur, onFocus, onKeyDown } = inputProps;
@@ -407,6 +408,7 @@ class Autosuggest extends Component {
         <Autowhatever
           input={input}
           customRenderInput={customRenderInput}
+          customRenderList={customRenderList}
           multiSection={multiSection}
           items={items}
           renderItem={renderItem}
@@ -427,21 +429,8 @@ class Autosuggest extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const input = ownProps.customInput || 'input';
-  let customRenderInput = ownProps.customRenderInput;
-
-  if (typeof customRenderInput === 'function') {
-    customRenderInput = customRenderInput.bind(
-      null,
-      input,
-      state
-    );
-  }
-
+function mapStateToProps(state) {
   return {
-    customRenderInput,
-    input,
     isFocused: state.isFocused,
     isCollapsed: state.isCollapsed,
     focusedSectionIndex: state.focusedSectionIndex,
@@ -477,6 +466,31 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  const input = ownProps.customInput || 'input';
+  let customRenderInput = ownProps.customRenderInput;
+
+  if (typeof customRenderInput === 'function') {
+    customRenderInput = customRenderInput.bind(
+      null,
+      input,
+      stateProps,
+      dispatchProps
+    );
+  }
+
+  return Object.assign(
+    {},
+    ownProps,
+    stateProps,
+    dispatchProps,
+    {
+      input,
+      customRenderInput
+    }
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
   Autosuggest
 );
