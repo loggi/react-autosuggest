@@ -25,7 +25,7 @@
   "dependencies": {
     "@loggi/react-autowhatever": "4.0.0-alpha.1",
     "prop-types": "15.6.0",
-    "react-redux": "4.4.5",
+    "react-redux": "5.0.6",
     "redux": "3.5.1"
   },
   "peerDependencies": {
