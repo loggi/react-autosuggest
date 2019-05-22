@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moroshko/react-autosuggest.git"
+    "url": "https://github.com/loggi/react-autosuggest.git"
   },
   "author": "Misha Moroshko <michael.moroshko@gmail.com>",
   "scripts": {
