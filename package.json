@@ -1,11 +1,11 @@
 {
   "name": "@loggi/react-autosuggest",
-  "version": "3.8.3",
+  "version": "4.1.0",
   "description": "WAI-ARIA compliant React autosuggest component",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moroshko/react-autosuggest.git"
+    "url": "https://github.com/loggi/react-autosuggest.git"
   },
   "author": "Misha Moroshko <michael.moroshko@gmail.com>",
   "scripts": {
@@ -23,12 +23,13 @@
     "prepublish": "npm run dist && npm run standalone"
   },
   "dependencies": {
-    "@loggi/react-autowhatever": "3.2.7",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.1"
+    "@loggi/react-autowhatever": "4.0.0",
+    "prop-types": "15.6.0",
+    "react-redux": "6.0.0",
+    "redux": "4.0.1"
   },
   "peerDependencies": {
-    "react": "^0.14.7 || ^15.0.1"
+    "react": "16.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Autowhatever from '@loggi/react-autowhatever';
 import { connect } from 'react-redux';
 import {
