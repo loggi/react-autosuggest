@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@loggi/react-autowhatever": "4.0.0",
-    "prop-types": "^15.6.0",
+    "prop-types": "15.6.0",
     "react-redux": "6.0.0",
     "redux": "4.0.1"
   },
