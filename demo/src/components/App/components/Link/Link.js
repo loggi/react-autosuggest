@@ -1,7 +1,6 @@
 import styles from './Link.less';
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 
 export default function Link(props) {
   const { className, href, underline, children } = props;

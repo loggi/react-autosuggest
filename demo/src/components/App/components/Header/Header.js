@@ -1,7 +1,6 @@
 import styles from './Header.less';
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Link from 'Link/Link';
 import GitHub from 'GitHub/GitHub';

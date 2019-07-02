@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Provider } from 'react-redux';
+import React, { Component, PropTypes } from 'react';
 import { createStore } from 'redux';
 import reducer from './reducerAndActions';
 import Autosuggest from './Autosuggest';
@@ -128,30 +126,29 @@ export default class AutosuggestContainer extends Component {
     } = this.props;
 
     return (
-      <Provider store={this.store}>
-        <Autosuggest
-          customInput={customInput}
-          multiSection={multiSection}
-          shouldRenderSuggestions={shouldRenderSuggestions}
-          suggestions={suggestions}
-          onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          renderSectionTitle={renderSectionTitle}
-          getSectionSuggestions={getSectionSuggestions}
-          inputProps={inputProps}
-          onSuggestionSelected={onSuggestionSelected}
-          focusInputOnSuggestionClick={focusInputOnSuggestionClick}
-          selectFirst={selectFirst}
-          auxiliarComponent={auxiliarComponent}
-          auxiliarComponentPosition={auxiliarComponentPosition}
-          theme={mapToAutowhateverTheme(theme)}
-          id={id}
-          inputRef={this.saveInput}
-          customRenderInput={customRenderInput}
-          customRenderList={customRenderList}
-        />
-      </Provider>
+      <Autosuggest
+        customInput={customInput}
+        multiSection={multiSection}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        suggestions={suggestions}
+        onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        renderSectionTitle={renderSectionTitle}
+        getSectionSuggestions={getSectionSuggestions}
+        inputProps={inputProps}
+        onSuggestionSelected={onSuggestionSelected}
+        focusInputOnSuggestionClick={focusInputOnSuggestionClick}
+        selectFirst={selectFirst}
+        auxiliarComponent={auxiliarComponent}
+        auxiliarComponentPosition={auxiliarComponentPosition}
+        theme={mapToAutowhateverTheme(theme)}
+        id={id}
+        inputRef={this.saveInput}
+        store={this.store}
+        customRenderInput={customRenderInput}
+        customRenderList={customRenderList}
+      />
     );
   }
 }
