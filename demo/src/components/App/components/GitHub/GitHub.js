@@ -1,7 +1,6 @@
 import styles from './GitHub.less';
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 
 export default function GitHub(props) {
   const { user, repo } = props;
