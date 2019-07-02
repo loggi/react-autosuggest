@@ -23,7 +23,7 @@
     "prepublish": "npm run dist && npm run standalone"
   },
   "dependencies": {
-    "@loggi/react-autowhatever": "4.0.0-alpha.1",
+    "@loggi/react-autowhatever": "4.1.1",
     "prop-types": "15.6.0",
     "react-redux": "5.0.6",
     "redux": "3.5.1"
